@@ -28,30 +28,28 @@
             flex-direction: column;
             width: 100%;
             border-radius: 10px;
-            border: 1px solid $gray87;
+            border-right: 1px solid $gray87;
             justify-content: start;
-            padding: 69px 20px;
+            padding: 27px 0;
 
             @media screen and (min-width: 768px) {
-                width: 40%;
+                width: 30%;
             }
 
-            @media screen and (min-width: 1265px) {
+            @media screen and (min-width: 1040px) {
                 width: 23%;
             }
 
             &_left {
                 border-radius: 10px 0 0 10px;
-                @media screen and (max-width: 767px) {
-                    border-radius: 10px;
-                }
             }
 
             &_right {
                 border-radius: 0 10px 10px 0;
-                @media screen and (max-width: 767px) {
-                    border-radius: 10px;
-                }
+            }
+
+            @media screen and (max-width: 767px) {
+                border-radius: 10px;
             }
         }
     }

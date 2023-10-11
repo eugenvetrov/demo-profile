@@ -5,7 +5,7 @@
 </script>
 
 <template>
-    <div>
+    <div class="main-widget">
         <p class="main-widget__title">{{ title }}</p>
         <slot></slot>
     </div>
@@ -13,10 +13,14 @@
 
 <style scoped lang="scss">
     .main-widget {
+        display: flex;
+        flex-direction: column;
+        margin: 0 20px 20px 20px;
         &__title {
             font-weight: 600;
             font-size: 16px;
             line-height: 22px;
+            margin-top: 0;
         }
     }
 </style>

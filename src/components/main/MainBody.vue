@@ -18,6 +18,9 @@
             box-shadow: 0 0 10px rgba($black, 0.1);
             justify-content: space-between;
             margin: 30px auto;
+            @media screen and (max-width: 767px) {
+                flex-direction: column;
+            }
         }
     }
 </stile>

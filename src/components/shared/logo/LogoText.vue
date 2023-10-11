@@ -3,7 +3,7 @@
 </template>
 
 <style scoped lang="scss">
-    @import "@/assets/styles/variables/_colors.scss";
+    @import '@/assets/styles/variables/_colors.scss';
     .logo {
         &__text {
             color: $akira-red;
