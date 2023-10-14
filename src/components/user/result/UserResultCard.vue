@@ -1,7 +1,7 @@
 <script setup lang="ts">
     import { ref } from 'vue'
     const props = defineProps<{
-        selected?: Boolean,
+        selected?: boolean,
         image?: string
     }>()
     const isSelected = ref(props?.selected)
@@ -63,11 +63,11 @@
             border-left: 1px $gray88;
 
             &_title {
-                margin: auto 0 auto 20px;
+                margin: auto 10px auto 20px;
             }
 
             &_description {
-                margin: auto 0 auto 20px;
+                margin: auto 10px auto 20px;
             }
 
             &_selected {

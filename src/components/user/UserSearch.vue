@@ -1,5 +1,6 @@
 <script setup lang="ts">
     import { ref } from 'vue'
+    
     const searchField = ref('')
 </script>
 
@@ -16,7 +17,6 @@
             display: flex;
             width: 100%;
             height: 100%;
-            width: 100%;
         }
         &__input {
             width: 100%;

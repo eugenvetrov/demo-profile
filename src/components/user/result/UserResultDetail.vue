@@ -1,3 +1,12 @@
+<script setup lang="ts">
+    import { computed } from 'vue'
+    import { useStore } from 'vuex'
+    import { mainStoreKey } from '../../../stores/main'
+
+    const store = useStore(mainStoreKey)    
+    const count = computed(() => store.state.count)
+</script>
+
 <template>
     <div class="user-result-detail">
         <img class="user-result-detail__image_profile" src="@/assets/images/svg/empty_image.svg" alt="empty image" />
@@ -9,6 +18,7 @@
                 <span class="user-result-detail__content-subtitle">phone:</span> phone</p>
             <p>About:</p>
             <p>about content</p>
+            <p>{{ count }}</p>
         </div>
     </div>
 </template>
