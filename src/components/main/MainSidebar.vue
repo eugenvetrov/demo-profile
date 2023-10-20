@@ -32,11 +32,11 @@
             justify-content: start;
             padding: 27px 0;
 
-            @media screen and (min-width: 768px) {
+            @media screen and (min-width: 820px) {
                 width: 30%;
             }
 
-            @media screen and (min-width: 1040px) {
+            @media screen and (min-width: 1279px) {
                 width: 23%;
             }
 

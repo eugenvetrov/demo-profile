@@ -1,11 +1,14 @@
 <script setup lang="ts">
-    import { ref } from 'vue'
+    import { ref } from 'vue';
+
     const props = defineProps<{
-        selected?: boolean,
-        image?: string
+        userName?: string,
+        userEmail?: string,
+        imageSrc?: string
     }>()
-    const isSelected = ref(props?.selected)
-    const imageSrc = ref(props?.image)
+    const userName = ref(props?.userName)
+    const userEmail = ref(props?.userEmail)
+    const imageSrc = ref(props?.imageSrc)
     if (!imageSrc.value) {
         imageSrc.value = 'src/assets/images/svg/empty_image_card.svg'
     }
@@ -14,9 +17,9 @@
 <template>
     <div class="user-result-card">
         <img :src="imageSrc" class="user-result-card__image" alt="user image"/>
-        <div class="user-result-card__text-content" :class="{ 'user-result-card__text-content_selected': isSelected}">
-            <p class="user-result-card__text-content_title">title</p>
-            <p class="user-result-card__text-content_description">description</p>
+        <div class="user-result-card__text-content">
+            <p class="user-result-card__text-content_title">{{ userName }}</p>
+            <p class="user-result-card__text-content_description">{{ userEmail }}</p>
         </div>
     </div>
 </template>
@@ -36,9 +39,7 @@
 
         @media screen and (max-width: 270px) {
             flex-direction: column;
-            max-height: 250px;
-            word-wrap: break-word;
-            text-overflow: ellipsis;
+            max-height: 100%;
         }
 
         &__image {
@@ -51,27 +52,44 @@
             max-height: 70px;
             aspect-ratio: auto;
             object-fit: contain;
+            border-radius: 10px 0 0 10px;
+            background-color: $white;
         }
 
         &__text-content {
             display: flex;
             flex-direction: column;
             justify-content: center;
-            width: 100%;
+            width: 71%;
             height: 100%;
             min-height: 70px;
             border-left: 1px $gray88;
+            min-width: 0;
 
             &_title {
                 margin: auto 10px auto 20px;
+                overflow: hidden;
+                white-space: nowrap;
+                text-overflow: ellipsis;
+
+                @media screen and (max-width: 270px) {
+                    text-overflow: unset;
+                    word-break: break-all;
+                    white-space: wrap;
+                }
             }
 
             &_description {
                 margin: auto 10px auto 20px;
-            }
+                overflow: hidden;
+                white-space: nowrap;
+                text-overflow: ellipsis;
 
-            &_selected {
-                background-color: $gray88;
+                @media screen and (max-width: 270px) {
+                    text-overflow: unset;
+                    word-break: break-all;
+                    white-space: wrap;
+                }
             }
         }
     }

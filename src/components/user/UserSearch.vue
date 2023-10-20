@@ -1,12 +1,21 @@
 <script setup lang="ts">
-    import { ref } from 'vue'
-    
+    import { ref, watch } from 'vue'
+    import { useStore } from 'vuex'
+    import { mainStoreKey } from '../../stores/main'
+
     const searchField = ref('')
+    const store = useStore(mainStoreKey)
+    watch (searchField, async (newValue) => {
+        await store.dispatch('fetchUserData', newValue)
+    })
 </script>
 
 <template>
     <div class="user-search__container">
-        <input v-model="searchField" class="user-search__input" placeholder="Введите id или имя"/>
+        <input v-model="searchField"
+         name="user-search-field"
+         class="user-search__input"
+         placeholder="Введите id или имя"/>
     </div>
 </template>
 

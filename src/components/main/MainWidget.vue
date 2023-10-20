@@ -16,6 +16,7 @@
         display: flex;
         flex-direction: column;
         margin: 0 20px 20px 20px;
+        outline: none;
         &__title {
             font-weight: 600;
             font-size: 16px;
