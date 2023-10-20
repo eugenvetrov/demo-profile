@@ -1,20 +1,21 @@
 interface IUser {
     "id": number,
     "name": string,
-    "username": string,
-    "email": string,
-    "address": IAddress,
-    "phone": string,
-    "website": string,
-    "company": ICompany
+    "username"?: string,
+    "email"?: string,
+    "address"?: IAddress,
+    "phone"?: string,
+    "website"?: string,
+    "company"?: ICompany,
+    "about"?: string
 }
 
 interface IAddress {
-    "street": string,
-    "suite": string,
+    "street"?: string,
+    "suite"?: string,
     "city": string,
     "zipcode": string,
-    "geo": {
+    "geo"?: {
       "lat": string,
       "lng": string
     }
@@ -22,6 +23,6 @@ interface IAddress {
 
 interface ICompany {
     "name": string,
-    "catchPhrase": string,
-    "bs": string
+    "catchPhrase"?: string,
+    "bs"?: string
 }

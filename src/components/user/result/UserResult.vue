@@ -1,21 +1,24 @@
 <script setup lang="ts">
-    import { ref, computed } from 'vue'
+    import { computed } from 'vue'
     import { useStore } from 'vuex'
     import { mainStoreKey } from '../../../stores/main'
     import UserResultCard from '@/components/user/result/UserResultCard.vue'
+    import SpinnerLdsFacebook from '@/components/shared/spinner/SpinnerLdsFacebook.vue'
 
-    const results = ref()
-    const store = useStore(mainStoreKey)
-    await store.dispatch('fetchUserData')
-    const userData = computed(() => store.state.userData)
-    const selectedUser = computed(() => store.state.selectedUser)
+    const mainStore = useStore(mainStoreKey)
+    await mainStore.dispatch('fetchUserData')
+    const userData = computed(() => mainStore.state.userData)
+    const results = computed(() => userData.value?.length)
+    const selectedUser = computed(() => mainStore.state.selectedUser)
     const selectUser = (user: IUser) => {        
-        store.commit('selectUser', user)
+        mainStore.commit('selectUser', user)
     }
+    const userLoading = computed(() => mainStore.state.userLoading)
 </script>
 
 <template>
     <div class="user-result">
+        <SpinnerLdsFacebook v-if="userLoading" class="user-result__spinner" />
         <p class="user-result__text_not-found" v-if="!results">Ничего не найдено</p>
         <UserResultCard v-for="user in userData"
             :key="user.id"
@@ -36,6 +39,7 @@
         font-size: 14px;
         line-height: 17px;
         outline: none;
+        position: relative;
 
         &__text {
             &_not-found {
@@ -47,6 +51,12 @@
             &_selected {
                 background-color: $gray88;
             }
+        }
+
+        &__spinner {
+            position: absolute;
+            top: -48px;
+            right: 0;
         }
     }
 </style>

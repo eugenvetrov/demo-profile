@@ -1,12 +1,19 @@
 <script setup lang="ts">
     import UserResultDetail from '@/components/user/result/UserResultDetail.vue'
+    import BackToTopButton from '@/components/shared/back-to-top/BackToTopButton.vue'
+
+    import { computed } from 'vue'
+    import { useStore } from 'vuex'
+    import { mainStoreKey } from '../../stores/main'
+    const mainStore = useStore(mainStoreKey)
+    const selectedUser = computed(() => mainStore.state.selectedUser)
 </script>
 
 <template>
     <div class="main-content">
-        <p v-if="false" class="main-content__text_select-employee">Выберите сотрудника, чтобы посмотреть его профиль</p>
-        <UserResultDetail />
-        <UserResultDetail />
+        <p v-if="!selectedUser" class="main-content__text_select-employee">Выберите сотрудника, чтобы посмотреть его профиль</p>
+        <UserResultDetail v-else />
+        <BackToTopButton />
     </div>
 </template>
 
