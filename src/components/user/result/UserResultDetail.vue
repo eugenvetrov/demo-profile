@@ -2,6 +2,7 @@
     import { computed } from 'vue'
     import { useStore } from 'vuex'
     import { mainStoreKey } from '../../../stores/main'
+    import emptyUserImage from '@/assets/images/svg/empty_image.svg'
 
     const mainStore = useStore(mainStoreKey)
     const selectedUsers = computed(() => mainStore.state.selectedUsers)
@@ -10,7 +11,7 @@
 <template>
     <div class="user-result-detail" :key="selectedUser.id + selectedUser.name" v-for="selectedUser in selectedUsers">
         <img class="user-result-detail__image_profile"
-         :src="selectedUser?.image ? `${selectedUser?.image}` : 'src/assets/images/svg/empty_image.svg'"
+         :src="selectedUser?.image ? selectedUser?.image : emptyUserImage"
          alt="empty image" />
         <div class="user-result-detail__content">
             <p class="user-result-detail__content-title">{{ selectedUser?.name }}</p>
