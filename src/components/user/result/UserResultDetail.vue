@@ -9,7 +9,9 @@
 
 <template>
     <div class="user-result-detail" :key="selectedUser.id + selectedUser.name" v-for="selectedUser in selectedUsers">
-        <img class="user-result-detail__image_profile" src="@/assets/images/svg/empty_image.svg" alt="empty image" />
+        <img class="user-result-detail__image_profile"
+         :src="selectedUser?.image ? `${selectedUser?.image}` : 'src/assets/images/svg/empty_image.svg'"
+         alt="empty image" />
         <div class="user-result-detail__content">
             <p class="user-result-detail__content-title">{{ selectedUser?.name }}</p>
             <p class="user-result-detail__content-text">

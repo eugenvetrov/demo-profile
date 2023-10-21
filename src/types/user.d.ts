@@ -7,7 +7,8 @@ interface IUser {
     "phone"?: string,
     "website"?: string,
     "company"?: ICompany,
-    "about"?: string
+    "about"?: string,
+    "image"?: string
 }
 
 interface IAddress {

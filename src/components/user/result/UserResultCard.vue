@@ -9,9 +9,7 @@
     const userName = ref(props?.userName)
     const userEmail = ref(props?.userEmail)
     const imageSrc = ref(props?.imageSrc)
-    if (!imageSrc.value) {
-        imageSrc.value = 'src/assets/images/svg/empty_image_card.svg'
-    }
+    if (!imageSrc.value) imageSrc.value = 'src/assets/images/svg/empty_image_card.svg'
 </script>
 
 <template>
