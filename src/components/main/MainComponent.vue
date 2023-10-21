@@ -6,8 +6,10 @@
     import MainWidget from '@/components/main/MainWidget.vue'
     import UserSearch from '@/components/user/UserSearch.vue'
     import UserResult from '@/components/user/result/UserResult.vue'
+    import UserContent from '@/components/user/content/UserContent.vue'
     import LogoText from '@/components/shared/logo/LogoText.vue'
     import UserText from '@/components/shared/user/UserText.vue'
+    import BackToTopButton from '@/components/shared/back-to-top/BackToTopButton.vue'
 </script>
 
 <template>
@@ -24,6 +26,9 @@
                 <UserResult />
             </MainWidget>
         </MainSidebar>
-        <MainContent />
+        <MainContent>
+            <UserContent />
+            <BackToTopButton />
+        </MainContent>
     </MainBody>
 </template>

@@ -10,4 +10,13 @@ const app = createApp(App)
 app.use(router)
 app.use(mainStore, mainStoreKey)
 app.component('DefaultLayout', DefaultLayout)
+
+app.config.errorHandler = (err, instance, info) => {
+    console.error(err, info, instance)
+}
+
+app.config.warnHandler = (msg, instance, trace) => {
+    console.error(msg, instance, trace)
+}
+
 app.mount('#app')

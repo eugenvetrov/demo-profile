@@ -9,11 +9,12 @@
     await mainStore.dispatch('fetchUserData')
     const userData = computed(() => mainStore.state.userData)
     const results = computed(() => userData.value?.length)
-    const selectedUser = computed(() => mainStore.state.selectedUser)
+    const selectedUsers = computed(() => mainStore.state.selectedUsers)
     const selectUser = (user: IUser) => {        
         mainStore.commit('selectUser', user)
     }
     const userLoading = computed(() => mainStore.state.userLoading)
+    const isUserSelected = (user: IUser) => selectedUsers.value.find((selectedUser) => selectedUser.id === user.id)
 </script>
 
 <template>
@@ -26,7 +27,7 @@
             :userName = "user.name"
             :userEmail = "user.email"
             @click="selectUser(user)"
-            :class="selectedUser?.id === user.id ? 'user-result__card_selected' : ''"
+            :class="isUserSelected(user) ? 'user-result__card_selected' : ''"
             />
     </div>
 </template>

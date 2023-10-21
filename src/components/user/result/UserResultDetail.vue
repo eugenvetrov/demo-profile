@@ -4,11 +4,11 @@
     import { mainStoreKey } from '../../../stores/main'
 
     const mainStore = useStore(mainStoreKey)
-    const selectedUser = computed(() => mainStore.state.selectedUser)
+    const selectedUsers = computed(() => mainStore.state.selectedUsers)
 </script>
 
 <template>
-    <div class="user-result-detail">
+    <div class="user-result-detail" :key="selectedUser.id + selectedUser.name" v-for="selectedUser in selectedUsers">
         <img class="user-result-detail__image_profile" src="@/assets/images/svg/empty_image.svg" alt="empty image" />
         <div class="user-result-detail__content">
             <p class="user-result-detail__content-title">{{ selectedUser?.name }}</p>
@@ -45,15 +45,22 @@
         &__content {
             display: flex;
             flex-direction: column;
+            width: 43%;
             margin-left: 10%;
             @media screen and (max-width: 200px) {
                 word-break: break-all;
+            }
+            @media screen and (max-width: 768px) {
+                width: 100%
             }
             &-title {
                 font-size: 16px;
                 font-weight: 600;
                 line-height: 22px;
                 margin-top: 0;
+            }
+            &-text {
+                overflow-wrap: anywhere;
             }
         }
     }
