@@ -3,6 +3,7 @@ import { createStore, Store } from 'vuex'
 import axios from 'axios'
 
 export interface MainState {
+  userApiUrl: string,
   userData?: IUser[],
   selectedUsers: IUser[],
   userLoading: boolean,
@@ -13,6 +14,7 @@ export const mainStoreKey: InjectionKey<Store<MainState>> = Symbol()
 
 export const mainStore = createStore<MainState>({
   state: { 
+    userApiUrl: '',
     userData: [],
     selectedUsers: [],
     userLoading: false,
@@ -36,23 +38,25 @@ export const mainStore = createStore<MainState>({
     },
     updateErrorMessage(state, errorMessage) {
       state.errorMessage = errorMessage
+    },
+    updateUserApiUrl(state, userSearchInput) {
+      if (!userSearchInput) {
+        state.userApiUrl = `${import.meta.env.VITE_API_URL}users`
+      } else {
+        const userSearchTextArray = userSearchInput.split(',')
+        const userQueryText = userSearchTextArray.reduce((acc: string, cur: string) => acc + '|' + cur.trim())
+        state.userApiUrl = `${import.meta.env.VITE_API_URL}users?username_like=${userQueryText}`
+      }
     }
   },
 
   actions: {
-    async fetchUserData({ commit }, userSearchInput) {
+    async fetchUserData({ state, commit }, userSearchInput) {
       commit('updateErrorMessage', '')
-      let url
-      if (!userSearchInput) {
-        url = `${import.meta.env.VITE_API_URL}users`
-      } else {
-        const userSearchTextArray = userSearchInput.split(',')
-        const userQueryText = userSearchTextArray.reduce((acc: string, cur: string) => acc + '|' + cur.trim())
-        url = `${import.meta.env.VITE_API_URL}users?username_like=${userQueryText}`
-      } 
+      commit('updateUserApiUrl', userSearchInput)
       commit('setUserLoading', true)
       try {
-        const res = await axios.get(url)
+        const res = await axios.get(state.userApiUrl)
         const userData = res.data
         commit('updateUserData', await userData)
       } catch (err) {
