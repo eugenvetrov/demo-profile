@@ -45,8 +45,11 @@ export const mainStore = createStore<MainState>({
       let url
       if (!userSearchInput) {
         url = `${import.meta.env.VITE_API_URL}users`
-      } else url = `${import.meta.env.VITE_API_URL}users?name_like=${userSearchInput}`
-      
+      } else {
+        const userSearchTextArray = userSearchInput.split(',')
+        const userQueryText = userSearchTextArray.reduce((acc: string, cur: string) => acc + '|' + cur.trim())
+        url = `${import.meta.env.VITE_API_URL}users?username_like=${userQueryText}`
+      } 
       commit('setUserLoading', true)
       try {
         const res = await axios.get(url)
