@@ -31,7 +31,7 @@ export const mainStore = createStore<MainState>({
         const selectedUsers = toRaw(state.selectedUsers)
         state.selectedUsers = selectedUsers.filter((selectedUser: IUser) => selectedUser.id !== user.id)
       } else {
-        if (user) state.selectedUsers.push(user)
+        state.selectedUsers.push(user)
       } 
     },
     updateErrorMessage(state, errorMessage) {
