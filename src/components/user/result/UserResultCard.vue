@@ -36,6 +36,10 @@
         box-shadow: 0 0 10px rgba($black, 0.1);
         margin-top: 10px;
 
+        &:hover {
+            cursor: pointer;
+        }
+
         @media screen and (max-width: 270px) {
             flex-direction: column;
             max-height: 100%;
